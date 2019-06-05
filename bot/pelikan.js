@@ -9,14 +9,14 @@ const bot = new Discord.Client()
 
 //googleDrive.ListFiles();
 
-bot.on('ready', async () => {
+bot.on('ready', () => {
     console.log("Connected as " + bot.user.tag)
-    bot.user.setActivity("porn", { type: "WATCHING" })
+    bot.user.setActivity("tetris", { type: "PLAYING" })
 
 })
 
 
-bot.on('message', async message => {
+bot.on('message', message => {
 
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
@@ -42,4 +42,4 @@ bot.on('message', async message => {
 
 
 
-bot.login(botConfig.token)
+//bot.login(botConfig.token)
