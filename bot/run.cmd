@@ -1,1 +1,1 @@
-node pelikan.js
+node bot.js

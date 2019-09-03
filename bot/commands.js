@@ -24,3 +24,21 @@ module.exports.addRole = function (message, roleId) {
     message.channel.send(`Používatel ${message.author.username} byl přidán do role.`);
   }
 };
+
+module.exports.uptime = function (message, botUptime) {
+  message.channel.send(`Jsem online už ${formatUptime(botUptime)}.`);
+};
+
+module.exports.kill = function (message, bot) {
+  message.channel.send(`Byl jsem online ${formatUptime(bot.uptime)} a niní je čas umžít.`);
+  bot.destroy();
+};
+
+function formatUptime(botUptime) {
+  var totalSeconds = (botUptime / 1000);
+  var days = Math.floor(totalSeconds / 86400);
+  var hours = Math.floor(totalSeconds / 3600);
+  totalSeconds %= 3600;
+  var minutes = Math.floor(totalSeconds / 60);
+  return `${days} dní, ${hours} hodin, ${minutes} minut`;
+}

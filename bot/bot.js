@@ -7,14 +7,14 @@ const Discord = require('discord.js')
 const bot = new Discord.Client()
 
 
-bot.on('ready', async () => {
+bot.on('ready', () => {
     console.log("Connected as " + bot.user.tag)
-    bot.user.setActivity("tetris", { type: "PLAYING" })
+    bot.user.setActivity("Dota 2", { type: "PLAYING" })
 
 })
 
 
-bot.on('message', async message => {
+bot.on('message', message => {
 
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
@@ -25,31 +25,36 @@ bot.on('message', async message => {
     let args = messageArray.slice(1);
 
     if (cmd === `help`) {
-        return message.channel.send(`Prikazy jsou:` +
-                                    `\n\t${prefix}hello` +
-                                    `\n\t${prefix}assemble <code>` +
-                                    `\n\t${prefix}minecraft` +
-                                    `\n\t${prefix}lolko`);
+      return message.channel.send(`Prikazy jsou:` +
+                                  `\n\t${prefix}hello` +
+                                  `\n\t${prefix}assemble <code>` +
+                                  `\n\t${prefix}minecraft` +
+                                  `\n\t${prefix}lolko` +
+                                  `\n\t${prefix}uptime`);
     }
 
     if (cmd === `${prefix}hello`) {
-        return message.reply("dobrej den!");
+      return message.reply("dobrej den!");
     }
 
     if (cmd === `${prefix}assemble`) {
-        commands.assemble(message, args);
+      commands.assemble(message, args);
     }
 
     if (cmd === `${prefix}minecraft`) {
-        commands.addRole(message, '583972909542932487');
+      commands.addRole(message, '583972909542932487');
     }
 
     if (cmd === `${prefix}lolko`) {
-        commands.addRole(message, '584333850247823371');
+      commands.addRole(message, '584333850247823371');
     }
 
-    if (cmd === `${prefix}kill`) {
-        bot.destroy();
+    if (cmd === `${prefix}uptime`) {
+      commands.uptime(message, bot.uptime);
+    }
+
+    if (cmd === `${prefix}kill` && message.member.hasPermission('ADMINISTRATOR')) {
+      commands.kill(message, bot);
     }
 
 });
