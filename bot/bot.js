@@ -1,16 +1,14 @@
 const botConfig = require('./config/botConfig.json');
-const commands = require('./commands/commands.js');
+const commands = require('./commands/commands');
+const bank = require('./commands/bank');
 
 const Discord = require('discord.js')
 
-
 const bot = new Discord.Client()
 
-
 bot.on('ready', () => {
-    console.log("Connected as " + bot.user.tag)
-    bot.user.setActivity("Dota 2", { type: "PLAYING" })
-
+  console.log("Connected as " + bot.user.tag)
+  bot.user.setActivity("Dota 2", { type: "PLAYING" })
 })
 
 
@@ -23,6 +21,7 @@ bot.on('message', message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    const commandChannel = bot.channels.get('619278141268951090');
 
     if (cmd === `help`) {
       return message.channel.send(`Prikazy jsou:` +
@@ -54,7 +53,7 @@ bot.on('message', message => {
     }
 
     if (cmd === `${prefix}roll`) {
-      commands.roll(message);
+      commands.roll(message, commandChannel);
     }
 
     if (cmd === `${prefix}nostra`) {
@@ -62,7 +61,7 @@ bot.on('message', message => {
     }
 
     if (cmd === `${prefix}coins`) {
-      commands.coinBalance(message);
+      bank.coinBalance(message, commandChannel);
     }
 
     if (cmd === `${prefix}kill` && message.member.hasPermission('ADMINISTRATOR')) {
