@@ -4,3 +4,4 @@ config/
 node_modules/
 config/
 token.json
+jsonDAta/
