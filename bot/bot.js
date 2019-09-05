@@ -1,5 +1,5 @@
 const botConfig = require('./config/botConfig.json');
-const commands = require('./commands.js');
+const commands = require('./commands/commands.js');
 
 const Discord = require('discord.js')
 
@@ -51,6 +51,18 @@ bot.on('message', message => {
 
     if (cmd === `${prefix}uptime`) {
       commands.uptime(message, bot.uptime);
+    }
+
+    if (cmd === `${prefix}roll`) {
+      commands.roll(message);
+    }
+
+    if (cmd === `${prefix}nostra`) {
+      commands.nostra(message);
+    }
+
+    if (cmd === `${prefix}coins`) {
+      commands.coinBalance(message);
     }
 
     if (cmd === `${prefix}kill` && message.member.hasPermission('ADMINISTRATOR')) {
