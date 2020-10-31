@@ -1,6 +1,5 @@
 const botConfig = require('./config/botConfig.json');
 const commands = require('./commands/commands');
-const bank = require('./commands/bank');
 
 const Discord = require('discord.js')
 
@@ -8,7 +7,7 @@ const bot = new Discord.Client()
 
 bot.on('ready', () => {
   console.log("Connected as " + bot.user.tag)
-  bot.user.setActivity("Dota 2", { type: "PLAYING" })
+  bot.user.setActivity("Among Us 2", { type: "PLAYING" })
 })
 
 
@@ -21,14 +20,10 @@ bot.on('message', message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    const commandChannel = bot.channels.get('619278141268951090');
 
     if (cmd === `help`) {
       return message.channel.send(`Prikazy jsou:` +
                                   `\n\t${prefix}hello` +
-                                  `\n\t${prefix}assemble <code>` +
-                                  `\n\t${prefix}minecraft` +
-                                  `\n\t${prefix}lolko` +
                                   `\n\t${prefix}uptime`);
     }
 
@@ -36,32 +31,12 @@ bot.on('message', message => {
       return message.reply("dobrej den!");
     }
 
-    if (cmd === `${prefix}assemble`) {
-      commands.assemble(message, args);
-    }
-
-    if (cmd === `${prefix}minecraft`) {
-      commands.addRole(message, '583972909542932487');
-    }
-
-    if (cmd === `${prefix}lolko`) {
-      commands.addRole(message, '584333850247823371');
-    }
-
     if (cmd === `${prefix}uptime`) {
       commands.uptime(message, bot.uptime);
     }
 
-    if (cmd === `${prefix}roll`) {
-      commands.roll(message, commandChannel);
-    }
-
     if (cmd === `${prefix}nostra`) {
       commands.nostra(message);
-    }
-
-    if (cmd === `${prefix}coins`) {
-      bank.coinBalance(message, commandChannel);
     }
 
     if (cmd === `${prefix}kill` && message.member.hasPermission('ADMINISTRATOR')) {
