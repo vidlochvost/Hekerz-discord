@@ -44,11 +44,11 @@ bot.on('message', message => {
       catch(error => { console.log('caught', error.message); });
   }
 
-  if (cmd === `${prefix}memory`) {
+  if (cmd === `${prefix}pridaj`) {
     commands.memory(message);
   }
 
-  if (cmd === `${prefix}remember`) {
+  if (cmd === `${prefix}fotka`) {
     commands.remember(message);
   }
 

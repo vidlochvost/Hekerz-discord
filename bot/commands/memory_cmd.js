@@ -21,7 +21,6 @@ module.exports.getRandomImage = function (message) {
 module.exports.dowloadImage = function (message) {
     let attachment = message.attachments.first();
     if (attachment) {//checks if an attachment is sent
-        message.reply(attachment.name + " at url: " + attachment.url);
         download(attachment.url, getNewFilePath());//Function I will show later
     }
     message.delete({ timeout: 5000 })
