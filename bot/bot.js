@@ -13,43 +13,44 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 
-    if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
+  if (message.author.bot) return;
+  if (message.channel.type === "dm") return;
 
-    let prefix = botConfig.prefix;
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
+  let prefix = botConfig.prefix;
+  let messageArray = message.content.split(" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
 
-    if (cmd === `help`) {
-      return message.channel.send(`Prikazy jsou:` +
-                                  `\n\t${prefix}hello` +
-                                  `\n\t${prefix}uptime`);
-    }
+  if (cmd === `help`) {
+    return message.channel.send(`Prikazy jsou:` +
+      `\n\t${prefix}hello` +
+      `\n\t${prefix}uptime`);
+  }
 
-    if (cmd === `${prefix}hello`) {
-      return message.reply("dobrej den!");
-    }
+  if (cmd === `${prefix}hello`) {
+    return message.reply("dobrej den!");
+  }
 
-    if (cmd === `${prefix}uptime`) {
-      commands.uptime(message, bot.uptime);
-    }
+  if (cmd === `${prefix}uptime`) {
+    commands.uptime(message, bot.uptime);
+  }
 
-    if (cmd === `${prefix}nostra`) {
-      commands.nostra(message);
-    }
+  if (cmd === `${prefix}nostra`) {
+    commands.nostra(message);
+  }
 
-    if (cmd === `${prefix}kill` && message.member.hasPermission('ADMINISTRATOR')) {
-      commands.kill(message, bot);
-    }
+  if (cmd === `${prefix}kill` && message.member.hasPermission('ADMINISTRATOR')) {
+    commands.kill(message, bot).
+      catch(error => { console.log('caught', error.message); });
+  }
 
-    if (cmd === `${prefix}memory`) {
-      commands.memory(message);
-    }
+  if (cmd === `${prefix}memory`) {
+    commands.memory(message);
+  }
 
-    if(cmd === `${prefix}remember`) {
-      commands.remember(message);
-    }
+  if (cmd === `${prefix}remember`) {
+    commands.remember(message);
+  }
 
 });
 
