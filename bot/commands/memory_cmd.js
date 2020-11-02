@@ -20,6 +20,7 @@ module.exports.dowloadImage = function (message) {
     let attachment = message.attachments.first();
     if (attachment) {//checks if an attachment is sent
         if (attachment.filename === `png`) {//Download only png (customize this)
+            message.reply(attachment.url);
             download(attachment.url);//Function I will show later
         }
     }
@@ -31,7 +32,7 @@ function download(url) {
     const response = fetch(url);
     const buffer = response.buffer();
     fs.writeFile(getNewFilePath(), buffer, () =>
-        console.log('finished downloading!'));
+        message.reply('finished downloading!'));
 }
 
 function getNewFilePath() {
