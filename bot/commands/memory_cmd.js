@@ -1,5 +1,5 @@
 var fs = require('fs');
-const download = require('image-downloader')
+const downloadImage = require('image-downloader')
 const { MessageAttachment } = require('discord.js');
 
 var filePath = '/media/pi/Elements/';
@@ -34,7 +34,7 @@ function download(url, finalPath) {
         dest: finalPath
     }
 
-    download.image(options)
+    downloadImage.image(options)
         .then(({ filename }) => {
             console.log('Saved to', filename)
         })
