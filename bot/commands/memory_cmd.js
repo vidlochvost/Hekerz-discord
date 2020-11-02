@@ -20,7 +20,7 @@ module.exports.getRandomImage = function (message) {
 }
 
 module.exports.dowloadImage = function (message) {
-    for (attachment in message.attachments) {
+    for ([key, attachment] in Object.entries(message.attachments)) {
         message.reply(attachment)
         if (attachment) {
             let nameArray = attachment.name.split(".");
