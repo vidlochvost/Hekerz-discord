@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const utils = require('./utils/jsonUtils')
+const memoryCmd = require('./memory_cmd')
 
 const nostra = require('./jsonData/nostra.json')
 
@@ -17,3 +18,11 @@ module.exports.nostra = function (message) {
   let result = ` bude obědvat ${pizza}, dobrou chuť.`;
   message.reply(result);
 }
+
+module.exports.memory = function (message) {
+  memoryCmd.getRandomImage(message);
+};
+
+module.exports.remember = function (message) {
+  memoryCmd.dowloadImage(message);
+};

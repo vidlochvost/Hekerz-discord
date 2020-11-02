@@ -43,6 +43,14 @@ bot.on('message', message => {
       commands.kill(message, bot);
     }
 
+    if (cmd === `${prefix}memory`) {
+      commands.memory(message);
+    }
+
+    if(cmd === `${prefix}remember`) {
+      commands.remember(message);
+    }
+
 });
 
 
