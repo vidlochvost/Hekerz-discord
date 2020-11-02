@@ -17,7 +17,7 @@ module.exports.getRandomImage = function (message) {
 }
 
 module.exports.dowloadImage = function (message) {
-    let attachment = msg.attachments.first();
+    let attachment = message.attachments.first();
     if (attachment) {//checks if an attachment is sent
         if (attachment.filename === `png`) {//Download only png (customize this)
             download(attachment.url,);//Function I will show later
