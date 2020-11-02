@@ -1,5 +1,7 @@
 var fs = require('fs');
 const fetch = require('node-fetch');
+const { MessageAttachment } = require('discord.js');
+
 var filePath = '/media/pi/Elements/';
 
 module.exports.getRandomImage = function (message) {
@@ -17,14 +19,10 @@ module.exports.getRandomImage = function (message) {
 }
 
 module.exports.dowloadImage = function (message) {
-    message.reply('JJJ');
     let attachment = message.attachments.first();
     if (attachment) {//checks if an attachment is sent
-        message.reply(attachment.filename);
-        if (attachment.filename === `png`) {//Download only png (customize this)
-            message.reply(attachment.url);
-            download(attachment.url);//Function I will show later
-        }
+        message.reply(attachment.name + " at url: " + attachment.url);
+        download(attachment.url);//Function I will show later
     }
     message.delete({ timeout: 5000 })
         .catch(console.error);
