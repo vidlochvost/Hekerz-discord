@@ -44,7 +44,7 @@ function download(url, finalPath) {
 function getNewFilePath() {
     var files = fs.readdirSync(filePath);
     let filesLength = 0
-    if (!(array === undefined || array.length == 0)) {
+    if (!(files === undefined || files.length == 0)) {
         filesLength = files.length;
     }
 
