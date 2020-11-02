@@ -1,6 +1,7 @@
 var fs = require('fs');
 const downloadImage = require('image-downloader')
 const { MessageAttachment } = require('discord.js');
+const { Console } = require('console');
 
 var filePath = '/media/pi/Elements/';
 
@@ -20,6 +21,7 @@ module.exports.getRandomImage = function (message) {
 
 module.exports.dowloadImage = function (message) {
     for (attachment in message.attachments) {
+        message.reply(attachment)
         if (attachment) {
             let nameArray = attachment.name.split(".");
             let extension = nameArray[1];
