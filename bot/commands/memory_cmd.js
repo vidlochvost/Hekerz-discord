@@ -20,12 +20,13 @@ module.exports.getRandomImage = function (message) {
 }
 
 module.exports.dowloadImage = function (message) {
+    let currentOrd = getCurrentOrd();
     message.attachments.forEach((attachment, snowflake) => {
         if (attachment) {
             let nameArray = attachment.name.split(".");
             let extension = nameArray[1];
             if (["png", "jpeg", "heic", "heif", "jpg"].includes(extension)) {
-                download(attachment.url, getNewFilePath());
+                download(attachment.url, getNewFilePath(currentOrd++));
             }
         }
     })
@@ -40,18 +41,18 @@ function download(url, finalPath) {
     }
 
     downloadImage.image(options)
-        .then(({ filename }) => {
-            console.log('Saved to', filename)
-        })
         .catch((err) => console.error(err))
 }
 
-function getNewFilePath() {
-    var files = fs.readdirSync(filePath);
+function getNewFilePath(ord) {
+    return `${filePath + ord}.png`;
+}
+
+function getCurrentOrd() {
+    let files = fs.readdirSync(filePath);
     let filesLength = 0
     if (!(files === undefined || files.length == 0)) {
         filesLength = files.length;
     }
-
-    return `${filePath + filesLength}.png`;
+    return filesLength;
 }
