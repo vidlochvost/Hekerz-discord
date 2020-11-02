@@ -20,8 +20,12 @@ module.exports.getRandomImage = function (message) {
 
 module.exports.dowloadImage = function (message) {
     let attachment = message.attachments.first();
-    if (attachment) {//checks if an attachment is sent
-        download(attachment.url, getNewFilePath());//Function I will show later
+    if (attachment) {
+        let nameArray = attachment.name.split(".");
+        let extension = nameArray[1];
+        if (extension === "png" || extension === "jpeg" || extension === "heif") {
+            download(attachment.url, getNewFilePath());
+        }
     }
     message.delete({ timeout: 5000 })
         .catch(console.error);
