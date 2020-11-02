@@ -21,8 +21,6 @@ module.exports.getRandomImage = function (message) {
 
 module.exports.dowloadImage = function (message) {
     message.attachments.forEach((attachment, snowflake) => {
-        console.log(snowflake)
-        message.reply(attachment.name)
         if (attachment) {
             let nameArray = attachment.name.split(".");
             let extension = nameArray[1];
