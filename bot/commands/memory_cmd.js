@@ -20,8 +20,9 @@ module.exports.getRandomImage = function (message) {
 }
 
 module.exports.dowloadImage = function (message) {
-    for ([key, attachment] in Object.entries(message.attachments)) {
-        message.reply(attachment)
+    message.attachments.forEach((attachment, snowflake) => {
+        console.log(snowflake)
+        message.reply(attachment.name)
         if (attachment) {
             let nameArray = attachment.name.split(".");
             let extension = nameArray[1];
@@ -29,7 +30,7 @@ module.exports.dowloadImage = function (message) {
                 download(attachment.url, getNewFilePath());
             }
         }
-    }
+    })
     message.delete({ timeout: 5000 })
         .catch(console.error);
 }
