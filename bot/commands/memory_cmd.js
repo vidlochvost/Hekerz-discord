@@ -5,7 +5,7 @@ var filePath = '/media/pi/Elements/';
 module.exports.getRandomImage = function (message) {
     var files = fs.readdirSync(filePath)
 
-    if (array === undefined || array.length == 0) {
+    if (files === undefined || files.length == 0) {
         let errMsg = `Žalbohu momentálne nemám žádne spomínky!`;
         message.reply(errMsg);
         return;
