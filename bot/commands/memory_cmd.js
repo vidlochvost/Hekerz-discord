@@ -15,7 +15,7 @@ module.exports.getRandomImage = function (message) {
     let chosenFile = files[Math.floor(Math.random() * files.length)]
 
     const attachment = new MessageAttachment(filePath + chosenFile);
-    message.channel.send(`${message.author},`, attachment);
+    message.channel.send(attachment);
 }
 
 module.exports.dowloadImage = function (message) {
