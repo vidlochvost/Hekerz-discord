@@ -19,12 +19,13 @@ module.exports.getRandomImage = function (message) {
 }
 
 module.exports.dowloadImage = function (message) {
-    let attachment = message.attachments.first();
-    if (attachment) {
-        let nameArray = attachment.name.split(".");
-        let extension = nameArray[1];
-        if (extension === "png" || extension === "jpeg" || extension === "heif") {
-            download(attachment.url, getNewFilePath());
+    for (attachment in message.attachments) {
+        if (attachment) {
+            let nameArray = attachment.name.split(".");
+            let extension = nameArray[1];
+            if (extension === "png" || extension === "jpeg" || extension === "heif") {
+                download(attachment.url, getNewFilePath());
+            }
         }
     }
     message.delete({ timeout: 5000 })
