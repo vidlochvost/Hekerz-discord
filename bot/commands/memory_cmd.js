@@ -1,5 +1,5 @@
 var fs = require('fs');
-const fetch = require('node-fetch');
+const download = require('image-downloader')
 const { MessageAttachment } = require('discord.js');
 
 var filePath = '/media/pi/Elements/';
@@ -22,17 +22,23 @@ module.exports.dowloadImage = function (message) {
     let attachment = message.attachments.first();
     if (attachment) {//checks if an attachment is sent
         message.reply(attachment.name + " at url: " + attachment.url);
-        download(attachment.url);//Function I will show later
+        download(attachment.url, getNewFilePath());//Function I will show later
     }
     message.delete({ timeout: 5000 })
         .catch(console.error);
 }
 
-function download(url) {
-    const response = fetch(url);
-    const buffer = response.buffer();
-    fs.writeFile(getNewFilePath(), buffer, () =>
-        message.reply('finished downloading!'));
+function download(url, finalPath) {
+    const options = {
+        url: url,
+        dest: finalPath
+    }
+
+    download.image(options)
+        .then(({ filename }) => {
+            console.log('Saved to', filename)
+        })
+        .catch((err) => console.error(err))
 }
 
 function getNewFilePath() {
