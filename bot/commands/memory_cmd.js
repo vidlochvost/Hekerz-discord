@@ -23,7 +23,7 @@ module.exports.dowloadImage = function (message) {
         if (attachment) {
             let nameArray = attachment.name.split(".");
             let extension = nameArray[1];
-            if (extension === "png" || extension === "jpeg" || extension === "heif") {
+            if (["png", "jpeg", "heic", "heif"].contains(extension)) {
                 download(attachment.url, getNewFilePath());
             }
         }
