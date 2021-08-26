@@ -2,8 +2,6 @@ const Discord = require('discord.js')
 const utils = require('./utils/jsonUtils')
 const memoryCmd = require('./memory_cmd')
 
-const nostra = require('./jsonData/nostra.json')
-
 module.exports.uptime = function (message, botUptime) {
   message.channel.send(`Jsem online už ${utils.formatUptime(botUptime)}.`);
 };

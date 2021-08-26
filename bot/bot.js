@@ -35,9 +35,11 @@ bot.on('message', message => {
     commands.uptime(message, bot.uptime);
   }
 
+  /*
   if (cmd === `${prefix}nostra`) {
     commands.nostra(message);
   }
+  */
 
   if (cmd === `${prefix}kill` && message.member.hasPermission('ADMINISTRATOR')) {
     commands.kill(message, bot).
